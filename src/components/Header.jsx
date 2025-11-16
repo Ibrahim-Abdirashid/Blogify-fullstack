@@ -13,7 +13,7 @@ const Header = () => {
       {/* div-ka guud ee isku haya */}
       <div className="max-w-7xl mx-auto  ">
         {/* div-ka right iyo left isku haya */}
-        <div className="flex justify-between h-16 items-center">
+        <div className="flex justify-between h-16 items-center px-4">
           {/* left */}
           <div className="flex items-center">
             {/* logo */}
@@ -75,7 +75,12 @@ const Header = () => {
 
                 {/* user image/profile */}
                 <div className="relative">
-                    <button className="h-8 w-8 rounded-full bg-gray-300 focus:ring-offset-amber-500 flex items-center justify-center focus:ring-2  focus:ring-offset-2 focus:outline-none border-none">
+                    <button className="h-8 w-8 rounded-full bg-gray-300 focus:ring-offset-amber-500 flex items-center justify-center focus:ring-2  focus:ring-offset-2 focus:outline-none border-none"
+                    
+                    onMouseEnter={()=> setIsDropdownOpen(true)}
+                    onClick={()=> setIsDropdownOpen(!isDropdownOpen)}
+
+                    >
                        {
                         avatarUrl ? (
                             <img src={avatarUrl} alt="user profile" className="h-8 w-8 rounded-full" />
@@ -84,6 +89,21 @@ const Header = () => {
                         )
                        }
                     </button>
+
+                    {/* dropdown menu */}
+                    {
+                      isDropdownOpen && (
+                        <div className="absolute flex flex-col  right-0 bg-gray-100 w-38 shadow-lg z-10 py-2.5 px-4 gap-2 rounded-md "
+                    onMouseLeave={()=> setIsDropdownOpen(false)}
+                    >
+                      <div></div>
+                      <Link className="text-sm font-medium text-gray-700 hover:bg-gray-300 px-2 py-1 rounded">Your Profile</Link>
+                      <Link className="text-sm font-medium text-gray-700 hover:bg-gray-300 px-2 py-1 rounded">Mange Article</Link>
+                      <Link className="text-sm font-medium text-gray-700 hover:bg-gray-300 px-2 py-1 rounded">Sign Out</Link>
+                    </div>
+                      )
+                    }
+                    
                 </div>
 
               </div>
