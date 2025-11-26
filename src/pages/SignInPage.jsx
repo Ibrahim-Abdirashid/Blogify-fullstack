@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import { signIn } from "../library/auth";
 
 const SignInPage = () => {
   const [email, setEmail] = useState();
@@ -7,6 +8,23 @@ const SignInPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+
+  const navigateTo = useNavigate()
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setIsLoading(true);
+    setError(null);
+
+    try {
+
+      await signIn(email, password);
+      navigateTo("/");
+    } catch (error) {
+      console.log("error", error);
+      
+    }
+  }
 
   return (
     <div className="h-screen flex items-center justify-center bg-gray-50 px-5">
@@ -19,9 +37,21 @@ const SignInPage = () => {
             Sign in to continue
           </p>
         </div>
+
+
+        {/* error */}
+
+
+        {error && (
+          <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-6">
+            <p className="text-sm font-medium">{error}</p>
+          </div>
+        )}
+
+        
         {/* formka */}
         <div className="bg-white rounded-lg shadow-md p-8">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="mb-6">
               <label
                 className="block text-gray-700 text-sm font-semibold mb-2"
