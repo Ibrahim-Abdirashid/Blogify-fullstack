@@ -1,4 +1,4 @@
 # Blogify
-## React + vite and Tailwind CSS
-## Supabase
+## frontend React + vite and Tailwind CSS
+## backend Supabase
 
