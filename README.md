@@ -80,9 +80,9 @@ Contributions, issues, and feature requests are highly welcome. Feel free to che
 
 ## 📞 Contact
 
-Deko Hussein Said - [Your Email or LinkedIn/Twitter Handle]
+Abraham Razhid  - [Neeykaraamo@gmail.com]
 
-Project Link: [Your Project URL or GitHub Repo Link]
+Project Link: [(https://github.com/Ibrahim-Abdirashid/Blogify-fullstack)]
 
 ---
 
