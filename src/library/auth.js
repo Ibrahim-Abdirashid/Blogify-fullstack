@@ -1,7 +1,7 @@
 import supabase from "./supapase";
 
 export async function signUp(email, password, username = "") {
-  let { data, error } = await supabase.auth.signUp({
+  let { data } = await supabase.auth.signUp({
     email : email,
     password : password,
   });
@@ -49,9 +49,7 @@ export async function signIn(email, password){
   })
 console.log(data);
 
-  if(error){
-    throw error;
-  }
+  if(error) throw error;
 
   // check if user exits , if does'nt exitst so create
 
@@ -120,3 +118,16 @@ export async function getUserProfile(userId) {
   return sessionData;
   
 }
+
+
+
+
+  //if user logedin, waa in la geeyaa home-ki oo laga qariyaa login iyo signup
+  export function onAuthChange(callback){
+
+      const {data } =  supabase.auth.onAuthStateChange((event, session) => {
+        callback(session?.user || null ,event);
+      });
+
+      return ()=> data.subscription.unsubscribe();
+  }

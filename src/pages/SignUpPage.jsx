@@ -4,10 +4,10 @@ import { Link, useNavigate } from "react-router";
 import {signUp} from "../library/auth"
 
 const SignUpPage = () => {
-  const [email, setEmail] = useState();
-  const [userName, setUserName] = useState();
-  const [password, setPassword] = useState();
-  const [confirmPassword, setConfirmPassword] = useState();
+  const [email, setEmail] = useState("");
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -27,7 +27,7 @@ const SignUpPage = () => {
     }
 
     try {
-      await signUp(email, userName, password);
+      await signUp(email, password, userName );
       setSuccess(true);
       setIsLoading(false);
 
@@ -36,6 +36,8 @@ const SignUpPage = () => {
       }, 3000)
 
     }catch(error){
+      console.error(error);
+      
       setError(error.message || "failed to create account. Please try again");
      
     }finally{
